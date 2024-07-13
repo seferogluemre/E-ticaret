@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yarın Kapında</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="shortcut icon"
+      href="https://w7.pngwing.com/pngs/713/936/png-transparent-online-shopping-shopping-cart-logo-e-commerce-market-blue-angle-company.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="delivery.css" />
+  </head>
+  <body>
+    <!-- navbar start-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div id="message" class="alert alert-success" style="display: none"></div>
+      <div class="container-fluid">
+        <a class="navbar-brand mb-lg-1 px-3" href="#">E-Ticaret</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="26"
+                height="24"
+                fill="currentColor"
+                class="bi bi-geo-alt"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"
+                ></path>
+                <path
+                  d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"
+                ></path>
+              </svg>
+              <a
+                class="nav-link dropdown-toggle d-inline ms-auto"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Konum Seç
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <div
+                    id="message"
+                    class="alert alert-success"
+                    style="display: none"
+                  ></div>
+                  <form id="selectionForm">
+                    <label class="px-3 py-2">
+                      Adresinizi Konumunuzu seçerek özel hizmetleri
+                      görebilirsiniz
+                    </label>
+                    <div class="form-group mb-3">
+                      <select
+                        class="form-control"
+                        id="ilSelect"
+                        onchange="updateIlce()"
+                      >
+                        <option selected disabled>İl seçin</option>
+                        <option value="istanbul">İstanbul</option>
+                        <option value="ankara">Ankara</option>
+                        <option value="izmir">İzmir</option>
+                        <option value="bursa">Bursa</option>
+                        <option value="antalya">Antalya</option>
+                        <option value="adana">Adana</option>
+                        <option value="konya">Konya</option>
+                      </select>
+                    </div>
+                    <div class="form-group mb-3">
+                      <select
+                        class="form-control"
+                        id="ilceSelect"
+                        onchange="updateMahalle()"
+                      >
+                        <option selected disabled>İlçe seçin</option>
+                      </select>
+                    </div>
+                    <div class="form-group mb-4">
+                      <select class="form-control" id="mahalleSelect">
+                        <option selected disabled>Mahalle seçin</option>
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                      Kaydet
+                    </button>
+                  </form>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link iconLink" href="#">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="26"
+                  height="26"
+                  fill="currentColor"
+                  class="bi bi-cart navİcon"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"
+                  />
+                </svg>
+                Sepetim
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link iconLink" href="#">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="26"
+                  height="26"
+                  fill="currentColor"
+                  class="bi bi-archive-fill navİcon"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1M.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8z"
+                  />
+                </svg>
+                Siparişlerim
+              </a>
+            </li>
+            <li class="nav-item" href="login.html">
+              <a class="nav-link iconLink" href="login.html">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="26"
+                  height="26"
+                  fill="currentColor"
+                  class="bi bi-file-person navİcon"
+                  viewBox="0 0 16 16"
+                  onclick="loginYonlendirme()"
+                >
+                  <path
+                    d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"
+                  />
+                  <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                </svg>
+                Hesabım
+              </a>
+            </li>
+            <li class="nav-item" href="login.html">
+              <a class="nav-link iconLink" href="contact.html">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="26"
+                  height="26"
+                  fill="currentColor"
+                  class="bi bi-telephone TelephoneIcon"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"
+                  />
+                </svg>
+                İletişim
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- navbar end -->
+
+    <!-- Header Start -->
+    <header class="mainHeader">
+      <div class="container-fluid bg">
+        <div class="row">
+          <div class="col-lg-6 ms-auto mt-5 p-5 col-md-12 col-sm-12">
+            <h1 class="text-center">Siparişlerin Artık daha hızlı kapında</h1>
+            <p class="px-lg-5 px-md-0 mx-5 text-center">
+              Artık siparişlerin tam ihtiyacın olduğu zamanda seninle. Hızlı
+              teslimat servislerimizi keşfet, güvenle,Dilediginiz Heryerden
+              alışverişin keyfini çıkarın.
+            </p>
+          </div>
+          <div class="col-lg-6 ms-auto me-md-auto col-sm-12">
+            <img
+              src="imageUrl2124_20220310104237-removebg-preview.png"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Section Location Start-->
+    <section class="sectionLocation mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 ms-md-auto ms-auto">
+            <img
+              src="https://images.hepsiburada.net/banners/s/0/280/imageUrl2102_20220310104709.png"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="col-lg-6 me-auto mt-5">
+            <h2>
+              Hızlı Teslimat Seçeneklerimiz için ilk önce konum seçmelisin
+            </h2>
+            <p class="mt-lg-3 mt-md-3 mt-sm-4 fs-5">
+              Hızlı teslimat seçeneklerimiz için önce konum seçmelisin
+            </p>
+            <img
+              class="img-fluid mt-md-3 mt-sm-4 mt-lg-3"
+              src="https://images.hepsiburada.net/banners/0/imageUrl2142_20230227145818.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Section Location end -->
+
+    <!-- Yarın Kapında Section START-->
+    <section class="questionSection mt-5 mt-md-5 mt-sm-5 mb-5">
+      <div class="container mt-lg-5 mt-md-5 mt-sm-5">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2>Yarın Kapında Nedir?</h2>
+          </div>
+          <div class="col-lg-6">
+            <a href="" class="yarınKapındaLink"
+              >Yarın Kapında merak edilenler
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-6 col-sm-12">
+            <p>
+              Yarın Kapında teslimat seçeneği olan ürünlerden verdiğin
+              siparişlerin ertesi gün teslim edilmesine olanak sağlayan bir
+              hizmettir. Üstelik ücretsiz!
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-info-circle mx-lg-2"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"
+                />
+                <path
+                  d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"
+                />
+              </svg>
+              Hizmet bedeli 34,90 TL’dir. Premium üyelerine ücretsizdir.
+            </p>
+          </div>
+          <div class="col-lg-12">
+            <p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-info-circle mx-lg-2"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"
+                />
+                <path
+                  d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"
+                />
+              </svg>
+              Kargo kapasitesine, hava şartlarına göre değişiklik gösterebilir.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Yarın Kapında section End -->
+
+    <!-- Advantages Section Start -->
+    <section class="advantagesSection mt-lg-5 mb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 px-lg-5 mb-sm-5">
+            <img
+              src="https://images.hepsiburada.net/banners/s/0/365-280/imageUrl2114_20220310132541.png"
+              alt=""
+              class="img-fluid"
+            />
+            <p class="advantagesP">
+              <strong>Konumu Gir</strong> Yarın Kapında teslimat seçeneğini seç
+              ve aradıklarını kolayca bul
+            </p>
+          </div>
+          <div class="col-lg-4 col-md-6 px-lg-5 mb-sm-5">
+            <img
+              src="https://images.hepsiburada.net/banners/s/0/280/imageUrl2108_20220310122932.png"
+              alt=""
+              class="img-fluid"
+            />
+            <p class="advantagesP">
+              Binlerce ürün arasından istediğini seçerek
+              <strong>sepetine ekle</strong>
+            </p>
+          </div>
+          <div class="col-lg-4 col-md-12 px-lg-5">
+            <img
+              src="https://images.hepsiburada.net/banners/s/0/280/imageUrl2095_20220310123512.png"
+              class="img-fluid"
+              alt=""
+            />
+            <p>
+              Sepetinde <strong>Yarın Kapında'yı</strong>Seç siparişin kapına
+              gelsin
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Advantages section end -->
+
+    <!-- Reklam Div -->
+
+    <div class="container mainContent">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <p class="advantagesP fs-3 m-0">
+            Binlerce ürün en uygun teslimat seçenekleri ile Yarın Kapında
+          </p>
+        </div>
+        <div class="col-lg-6 d-flex justify-content-lg-end">
+          <a href="index.html" class="btn btn-secondary mt-sm-4 alışverişLink">
+            Alışverişe başla
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bugün Kapında Start -->
+    <section class="questionSection mt-5 mt-md-5 mt-sm-5">
+      <div class="container mt-lg-5 mt-md-5 mt-sm-5">
+        <div class="row">
+          <div class="col-lg-6 col-md-12">
+            <h2>Bugün Kapında Nedir?</h2>
+          </div>
+          <div class="col-lg-6">
+            <a href="" class="yarınKapındaLink"
+              >Bugün Kapında merak edilenler
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <p>
+              Saat 13.00'e kadar verdiğin siparişlerin adresine aynı gün
+              HepsiJet ile teslim edilmesine olanak sağlayan bir hizmettir.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-info-circle mx-lg-2"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"
+                />
+                <path
+                  d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"
+                />
+              </svg>
+              Hizmet bedeli 34,90 TL’dir. Premium üyelerine ücretsizdir.
+            </p>
+          </div>
+          <div class="col-lg-12">
+            <p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-info-circle mx-lg-2"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"
+                />
+                <path
+                  d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"
+                />
+              </svg>
+              Kargo kapasitesine, hava şartlarına göre değişiklik gösterebilir.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- bugün kapında end -->
+
+    <!-- Sipariş Saatleri Start -->
+    <section>
+      <div class="container mt-lg-5 mt-md-4 mt-sm-5 mb-5">
+        <div class="row">
+          <div class="col-lg-4 col-xl-4 col-md-6 mt-sm-4">
+            <img
+              src="https://images.hepsiburada.net/banners/s/0/368-256/imageUrl2077_20230201163005.png"
+              alt=""
+            />
+          </div>
+          <div class="col-lg-4 col-xl-4 col-md-6 mt-sm-4">
+            <img
+              src="https://images.hepsiburada.net/banners/s/0/368-224/imageUrl2075_20230201162904.png"
+              alt=""
+            />
+          </div>
+          <div class="col-lg-4 col-xl-4 col-md-12 mt-sm-4">
+            <img
+              src="https://images.hepsiburada.net/banners/s/0/368-192/imageUrl2118_20220310115219.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Sipariş Saatleri End -->
+
+    <!-- Advantages Start -->
+    <section class="mt-lg-5 mt-md-4 mt-sm-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <img
+              src="https://images.hepsiburada.net/banners/s/0/280/imageUrl2110_20220310123132.png"
+              alt=""
+            />
+            <p>
+              Satıcısı <strong>Emre Seferoğlu</strong> olan ürünleri filtrele ve
+              aradıgını kolayca bul
+            </p>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <img
+              src="https://images.hepsiburada.net/banners/s/0/280/imageUrl2108_20220310122932.png"
+              alt=""
+            />
+            <p>
+              Binlerce ürün arasından istediğini seçerek
+              <strong>sepetine ekle</strong>
+            </p>
+          </div>
+          <div class="col-lg-4">
+            <img
+              src="https://images.hepsiburada.net/banners/s/0/280/imageUrl2070_20220310131209.png"
+              alt=""
+            />
+            <p>
+              Sepetinde <strong>Bugün kapında</strong> seçeneği varsa sana uygun
+              teslimat saatini seç
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Advantages End -->
+
+    <!-- Sık Sorular  -->
+    <section class="merakEdilen mt-lg-5 mt-sm-5">
+      <div class="container">
+        <div class="row">
+          <h1 class="col-lg-12 col-md-6 mt-sm-5">Merak Edilenler</h1>
+          <div class="col-lg-6">
+            <h2>Yarın kapında hakkında</h2>
+          </div>
+        </div>
+        <div class="row mt-lg-3">
+          <div class="accordion accordion-flush" id="accordionFlushExamples1">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseOne1"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseOne1"
+                >
+                  Yarın Kapında Nedir?
+                </button>
+              </h2>
+              <div
+                id="flush-collapseOne1"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionFlushExamples1"
+              >
+                <div class="accordion-body">
+                  Belirli lokasyonlarda “Yarın kapında” ikonu taşıyan ürünlerde
+                  sipariş oluşturulduktan 1 gün sonra teslimatı yapılır.
+                  Teslimat süresi, kargo kapasitesine, hava şartlarına göre
+                  değişiklik gösterebilir. Mücbir sebepler ve imkansızlık
+                  halleri saklıdır.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseTwo1"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseTwo1"
+                >
+                  Tüm Ürünlerde Geçerli Mi?
+                </button>
+              </h2>
+              <div
+                id="flush-collapseTwo1"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionFlushExamples1"
+              >
+                <div class="accordion-body">
+                  Konum seçildikten sonra, ürün listesinde ürün görselinin
+                  üstünde ve ürünü sepete ekledikten sonra sipariş onay
+                  sayfasında “Yarın kapında” ikonunu gördüğünüz ürünlerde
+                  geçerlidir. Sadece bu ürünleri listelemek için ürün listesi
+                  sayfasının üstündeki “Yarın kapında” filtresini
+                  kullanabilirsiniz.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseThree1"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseThree1"
+                >
+                  Yarın Kapıda Ücretli mi?
+                </button>
+              </h2>
+              <div
+                id="flush-collapseThree1"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionFlushExamples1"
+              >
+                <div class="accordion-body">
+                  Yarın kapında ücretsiz sunulan bir hizmettir.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-lg-3">
+          <div class="accordion accordion-flush" id="accordionFlushExamples2">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseOne2"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseOne2"
+                >
+                  Yarın Kapımda Siparişimdeki ürünler farklı adreslere teslim
+                  edilebilirmi
+                </button>
+              </h2>
+              <div
+                id="flush-collapseOne2"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionFlushExamples2"
+              >
+                <div class="accordion-body">
+                  Yarın kapında teslimat olan ürünlerde sipariş oluşturulduktan
+                  sonra adres değişikliği yapılmamaktadır.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseTwo2"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseTwo2"
+                >
+                  Hepsimat teslimat Noktalarına yarın kapında ile sipariş
+                  verebilirmiyim?
+                </button>
+              </h2>
+              <div
+                id="flush-collapseTwo2"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionFlushExamples2"
+              >
+                <div class="accordion-body">
+                  arın kapında teslimatlı ürünlerde “Hepsimat Teslimat
+                  Noktaları” seçeneği kullanılabilir.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseThree2"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseThree2"
+                >
+                  Hangi günler geçerli?
+                </button>
+              </h2>
+              <div
+                id="flush-collapseThree2"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionFlushExamples2"
+              >
+                <div class="accordion-body">
+                  Haftaiçi Yarın Kapında teslimat seçeneği olan ürünlerden
+                  verdiğin siparişlerini ertesi gün teslim alabilirsin.
+                  Cumartesi ve pazar günleri verilen siparişler pazartesi günü
+                  işleme alınır ve en erken salı günü teslim edilebilir. Resmi
+                  tatillerde ertesi gün teslimat yapılamaz. Teslimat süresi,
+                  kargo kapasitesine, hava şartlarına göre değişiklik
+                  gösterebilir. Mücbir sebepler ve imkansızlık halleri saklıdır.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="mt-5 py-3 border-5" />
+    <!-- Footer -->
+    <div class="container">
+      <div class="row mt-5">
+        <!-- İcon1 -->
+        <div class="col-12 col-sm-6 col-lg-3 mb-4">
+          <div class="row align-items-center">
+            <div class="col-3">
+              <img
+                src="https://images.hepsiburada.net/assets/footer/yarin-kapinda.svg"
+                class="img-fluid icon1"
+                alt=""
+                onclick="GoToDeliveryForm()"
+              />
+            </div>
+            <div class="col-9">
+              <p class="fw-bold">Yarın Kapında</p>
+              <p>Yarın Kapında İle ihtiyaçlarına ertesi gün sahip ol</p>
+            </div>
+          </div>
+        </div>
+        <!-- İcon2 -->
+        <div class="col-12 col-sm-6 col-lg-3 mb-4">
+          <div class="row align-items-center">
+            <div class="col-3">
+              <img
+                src="https://images.hepsiburada.net/assets/footer/tek-tikla-alisveris.svg"
+                class="img-fluid"
+                alt=""
+              />
+            </div>
+            <div class="col-9">
+              <p class="fw-bold">Tek Tıkla Güvenli Alışveriş</p>
+              <p>
+                Ödeme Ve Adres bilgilerinizi Kaydedin,Güvenli Alışveriş Yapın
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- icon 3 -->
+        <div class="col-12 col-sm-6 col-lg-3 mb-4">
+          <div class="row align-items-center">
+            <div class="col-3">
+              <img
+                src="https://images.hepsiburada.net/assets/footer/mobil-cebinizde.svg"
+                class="img-fluid"
+                alt=""
+              />
+            </div>
+            <div class="col-9">
+              <p class="fw-bold">Mobil Cebinizde</p>
+              <p>Dilediğiniz Her Yerden Güvenli Alışverişin keyfini çıkarın</p>
+            </div>
+          </div>
+        </div>
+        <!-- icon4 -->
+        <div class="col-12 col-sm-6 col-lg-3 mb-4">
+          <div class="row align-items-center">
+            <div class="col-3">
+              <img
+                src="  https://images.hepsiburada.net/assets/footer/kapinda-iade.svg"
+                class="img-fluid"
+                alt=""
+              />
+            </div>
+            <div class="col-9">
+              <p class="fw-bold">Kapında İade</p>
+              <p>Aldığınız Ürünü iade etmek bu kadar kolay olmamıştı.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="mt-5 py-3 border-5" />
+
+    <!-- Son Footer -->
+    <footer id="footer" class="bg-secondary text-white py-4">
+      <div class="container mt-5">
+        <div class="row" id="meİnfo">
+          <div class="col-md-3">
+            <h5 class="text-warning">Kurumsal:</h5>
+            <p>Hakkımızda</p>
+            <p>
+              <a
+                href="https://kurumsal.hepsiburada.com/tr/hepsiburada-dunyasi"
+                class="text-decoration-none text-light"
+                >İş Ortakları</a
+              >
+            </p>
+            <p>Yatırımcı ilişkileri</p>
+            <p>Müşteri Hizmetleri</p>
+            <p>
+              <a
+                href="https://www.hepsiburada.com/iletisim"
+                class="text-white text-decoration-none"
+                >İletişim</a
+              >
+            </p>
+          </div>
+          <div class="col-md-3 mb-3">
+            <h5 class="text-warning">Emre Seferoglu</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a
+                  href="https://www.hepsiburada.com/nasil-online-satis-yapilir"
+                  target="_blank"
+                  class="text-white text-decoration-none"
+                  >Satıcı Olmak İstiyorum</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-white text-decoration-none"
+                  >Telefon: (551) 555 55 53</a
+                >
+              </li>
+              <li>
+                <a href="mailto:info@example.com" class="text-white"
+                  >E-posta: info@emreSeferoglu.com</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3 mb-3">
+            <h5 class="text-warning">Bağlantılar</h5>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white">Ana Sayfa</a></li>
+              <li><a href="#" class="text-white">Hizmetlerimiz</a></li>
+              <li><a href="#" class="text-white">Blog</a></li>
+              <li><a href="#form-contact" class="text-white">İletişim</a></li>
+            </ul>
+          </div>
+          <!-- M -->
+          <div class="col-md-3 mt-1 mx-auto">
+            <h5 class="text-warning">Mobil Uygulamalar</h5>
+            <button type="button" class="btn btn-primary">
+              <a
+                href="https://apps.apple.com/qa/app/hepsiburada/id481035064?_ga=1.233749270.943623564.1417507753"
+                target="_blank"
+                class="text-dark text-decoration-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="36"
+                  height="35"
+                  fill="currentColor"
+                  class="bi bi-apple"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282"
+                  />
+                  <path
+                    d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282"
+                  />
+                </svg>
+                APP STOREDAN İNDİREBİLİRSİNİZ
+              </a>
+            </button>
+            <button type="button" class="btn btn-primary mt-3">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.pozitron.hepsiburada&feature=search_result#?t=W251bGwsMSwxLDEsImNvbS5wb3ppdHJvbi5oZXBzaWJ1cmFkYSJd"
+                target="_blank"
+                class="text-dark text-decoration-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="35"
+                  fill="currentColor"
+                  class="bi bi-google-play"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055zM1 13.396V2.603L6.846 8zM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27"
+                  />
+                </svg>
+                GOOGLE PLAYDAN İNDİREBİLİRSİNİZ</a
+              >
+            </button>
+            <button type="button" class="btn btn-primary mt-3">
+              <a
+                href="https://appgallery.huawei.com/#/app/C100884391"
+                class="text-dark text-decoration-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="19"
+                  height="36"
+                  fill="currentColor"
+                  class="bi bi-menu-down"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M7.646.146a.5.5 0 0 1 .708 0L10.207 2H14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h3.793zM1 7v3h14V7zm14-1V4a1 1 0 0 0-1-1h-3.793a1 1 0 0 1-.707-.293L8 1.207l-1.5 1.5A1 1 0 0 1 5.793 3H2a1 1 0 0 0-1 1v2zm0 5H1v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM2 4.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5m0 4a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"
+                  />
+                </svg>
+                APP GALLERY'DEN İNDİREBİLİRSİNİZ
+              </a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="delivery.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </body>
+</html>

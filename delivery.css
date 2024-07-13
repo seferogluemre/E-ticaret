@@ -1,0 +1,78 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+#message {
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: auto;
+    text-align: center;
+    max-width: 80%;
+}
+select{
+    border-radius: 10px;
+    background-color: rgb(160, 160, 160);
+    padding: 10px 20px;
+}
+
+.navİcon{
+    margin: 5px 5px;
+}
+.iconLink{
+    border-radius: 23px;
+}
+.iconLink:hover{
+    background-color:#ede7de;
+    transition: 0.4s ease-in-out;
+}
+.mainHeader{
+    margin-top: 10px;
+    font-size: 20px;
+    background-color: #F4A261;
+}
+.yarınKapındaLink{
+    background-color: #ffead8;
+    border-radius: 10px;
+    padding: 5px;
+    color: #b96622;
+    text-decoration: none;
+    font-size: 16px;
+}
+strong{
+    color: #b96622;
+    font-weight: 700;
+}
+.advantagesP{
+    font-weight: bold;
+}
+.mainContent{
+    background-color: #f09245;
+    padding: 30px ;
+    border-radius: 20px;
+}
+.alışverişLink{
+    color: #F4A261;
+    background-color: aliceblue;
+    padding: 10px 25px;
+    border: none;
+}
+
+
+@media only screen and (max-width: 600px) 
+{
+    .yarınKapındaLink{
+        display: none!important;
+    }
+}
+@media only screen and (max-width: 500px) 
+{
+    .TelephoneIcon{
+        margin-left: 7px;
+        margin-right: 3px;
+    }
+}
+
